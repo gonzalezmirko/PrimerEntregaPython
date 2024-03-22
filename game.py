@@ -1,6 +1,6 @@
 import random
 # Lista de palabras posibles
-words = ["python", "programación", "computadora", "código", "desarrollo",
+words = ["python", "programacion", "computadora", "codigo", "desarrollo",
 "inteligencia"]
 # Elegir una palabra al azar
 secret_word = random.choice(words)
@@ -15,9 +15,40 @@ guessed_letters = []
 print("¡Bienvenido al juego de adivinanzas!")
 print("Estoy pensando en una palabra. ¿Puedes adivinar cuál es?")
 print("Pero ten cuidado, si te equivocas ",max_errors," veces pierdes.")
-word_displayed = "_" * len(secret_word)
-# Mostrarla palabra parcialmente adivinada
-print(f"Palabra: {word_displayed}")
+print("Antes de empezar, selecciona una dificultad:")
+print("Opcion 1: Facil")
+print("Opcion 2: Media")
+print("Opcion 3: Dificil")
+opcion=int(input("Seleccionar opcion: "))
+#Opcion dificil
+if(opcion==3):
+    word_displayed = "_" * len(secret_word)
+    # Mostrarla palabra parcialmente adivinada
+    print(f"Palabra: {word_displayed}")
+else :
+    #Opcion facil
+    if(opcion==1):
+        guessed_letters=["a","e","i","o","u"]
+        word_displayed =[]
+        for i in range(len(secret_word)):
+            if(secret_word[i] in guessed_letters):
+                word_displayed.append(secret_word[i])
+            else:
+                word_displayed.append("_")
+        word_displayed = "".join(word_displayed)
+        print(f"Palabra: {word_displayed}")
+    else:
+        #Opcion media
+        if(opcion==2):
+            word_displayed =[]
+            for i in range(len(secret_word)):
+                if((i==0)or(i==len(secret_word)-1)):
+                    guessed_letters.append(secret_word[i])
+                    word_displayed.append(secret_word[i])
+                else:
+                    word_displayed.append("_")
+            word_displayed = "".join(word_displayed)
+            print(f"Palabra: {word_displayed}") 
 while (cont != max_errors):
  # Pedir al jugador que ingrese una letra diferente a vacio ""
     letter = input("Ingresa una letra: ").lower()
